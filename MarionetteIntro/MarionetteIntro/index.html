@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Marionette Contact Manager</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/application.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <span class="brand">Contact manager</span>
+            </div>
+        </div>
+    </div>
+
+    <!--REGIONS-->
+    <div id="main-region" class="container">
+        <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+    </div>
+
+    <!--TEMPLATES-->
+    <!-- We need to define a template to our view, templates are basically HTML, they govern "how things should be displayed"
+        (what HTML should be in the view, CSS styles, where data should be displayed, etc.)
+        In Marionette views need to be provided with a template. (How to display information) -->
+    <script type="text/template" id="contact-list-item">
+        <td><%- firstName %></td>
+        <td> <%- lastName %></td>
+        <td>
+            <a href="#contacts/<%- id %>" class="btn btn-sm js-show">
+                <i class="glyphicon glyphicon-eye-open"></i>
+                Show
+            </a>
+            <button class="btn btn-sm js-delete">
+                <i class="glyphicon glyphicon-remove"></i>
+                Delete
+            </button>
+        </td>
+    </script>
+
+    <script type="text/template" id="contact-list">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </script>
+
+    <script type="text/template" id="contact-view">
+        <h1><%- firstName %> <%- lastName %></h1>
+        <a href="#contacts/<%- id &>/edit" class="btn btn-sm js-edit">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Edit this contact
+        </a>
+        <p><strong>Phone number:</strong> <%- phoneNumber %></p>
+    </script>
+
+    <script type="text/template" id="missing-contact-view">
+        <div class="alert alert-danger">This contact doesn't exist!</div>
+    </script>
+
+    <script type="text/template" id="loading-view">
+        <h1><%- title %></h1>
+        <p><%- message %></p>
+        <div id="spinner"></div>
+    </script>
+
+    <script type="text/template" id="contact-form">
+        <h1>Edit <%- firstName %> <%- lastName %></h1>
+        <form>
+            <div class="control-group">
+                <label for="contact-firstName" class="control-label">First name:</label>
+                <input id="contact-firstName" name="firstName" type="text" value="<%- firstName %>"/>
+            </div>
+            <div class="control-group">
+                <label for="contact-lastName" class="control-label">Last name:</label>
+                <input id="contact-lastName" name="lastName" type="text" value="<%- lastName %>" />
+            </div>
+            <div class="control-group">
+                <label for="contact-phoneNumber" class="control-label">Phone number:</label>
+                <input id="contact-phoneNumber" name="phoneNumber" type="text" value="<%- phoneNumber %>" />
+            </div>
+            <button class="btn js-submit">Save</button>
+        </form>
+    </script>
+
+    <!--JS LIBS/INCLUDES-->
+    <script src="assets/js/vendor/jquery-2.1.3.js"></script>
+    <script src="assets/js/vendor/json2.js"></script>
+    <script src="assets/js/vendor/underscore.js"></script>
+    <script src="assets/js/vendor/backbone.js"></script>
+    <script src="assets/js/vendor/backbone.syphon.js"></script>
+    <script src="assets/js/vendor/backbone.localstorage.js"></script>
+    <script src="assets/js/vendor/backbone.marionette.js"></script>
+    <script src="assets/js/vendor/spin.js"></script>
+    <script src="assets/js/vendor/spin.jquery.js"></script>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/apps/contacts/config/storage/localstorage.js"></script>
+    <script src="assets/js/entities/contact.js"></script>
+    <script src="assets/js/common/views.js"></script>
+
+    <script src="assets/js/apps/contacts/contacts_app.js"></script>
+    <script src="assets/js/apps/contacts/list/list_view.js"></script>
+    <script src="assets/js/apps/contacts/list/list_controller.js"></script>
+    <script src="assets/js/apps/contacts/show/show_view.js"></script>
+    <script src="assets/js/apps/contacts/show/show_controller.js"></script>
+    <script src="assets/js/apps/contacts/edit/edit_view.js"></script>
+    <script src="assets/js/apps/contacts/edit/edit_controller.js"></script>
+
+    <!--CODE TO START THE APP-->
+    <!--If your app requires waiting until the DOM is ready before starting,
+         don't forget to wrap the call to start in a $(document).ready()-->
+    <script type="text/javascript">
+        ContactManager.start();
+    </script>
+
+</body>
+
+</html>
+

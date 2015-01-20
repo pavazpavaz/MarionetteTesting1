@@ -1,0 +1,14 @@
+﻿button.btn.btn-sm.js-delete {
+background-color: white;
+}
+
+span.brand {
+color: lightgray;
+}
+
+body
+{
+    /* 60px to move the container down and make room for the navbar */
+    padding-top: 60px;
+}
+
